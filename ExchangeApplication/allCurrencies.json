@@ -1,0 +1,75 @@
+[
+    {
+        "code": "omre",
+        "name": "Dollar",
+        "buy": 4.0654,
+        "sell": 3.9894,
+        "date": "2024-11-18"
+    },
+    {
+        "code": "EUR",
+        "name": "Euro",
+        "buy": 4.3654,
+        "sell": 4.2894,
+        "date": "2024-11-18"
+    },
+    {
+        "code": "GBP",
+        "name": "Pound Sterling",
+        "buy": 5.0654,
+        "sell": 4.9894,
+        "date": "2024-11-18"
+    },
+    {
+        "code": "JPY",
+        "name": "Japanese Yen",
+        "buy": 0.0365,
+        "sell": 0.0359,
+        "date": "2024-11-18"
+    },
+    {
+        "code": "CAD",
+        "name": "Canadian Dollar",
+        "buy": 3.1654,
+        "sell": 3.0894,
+        "date": "2024-11-18"
+    },
+    {
+        "code": "AUD",
+        "name": "Australian Dollar",
+        "buy": 2.8654,
+        "sell": 2.7894,
+        "date": "2024-11-18"
+    },
+    {
+        "code": "CHF",
+        "name": "Swiss Franc",
+        "buy": 4.2654,
+        "sell": 4.1894,
+        "date": "2024-11-18"
+    },
+    {
+        "code": "CNY",
+        "name": "Chinese Yuan",
+        "buy": 0.5654,
+        "sell": 0.5494,
+        "date": "2024-11-18"
+    },
+    {
+        "code": "INR",
+        "name": "Indian Rupee",
+        "buy": 0.0494,
+        "sell": 0.0486,
+        "date": "2024-11-18"
+    },
+    {
+        "code": "MXN",
+        "name": "Mexican Peso",
+        "buy": 0.2265,
+        "sell": 0.2194,
+        "date": "2024-11-18"
+    }
+]
+
+
+
