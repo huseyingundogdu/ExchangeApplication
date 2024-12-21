@@ -1,0 +1,16 @@
+[ /account/1
+    {
+        "id": "1",
+        
+        "pln_account_id": "0",
+        "other_account_id": "2",
+        "plnAmount": 0,
+        "plnCurrency": "",
+        "otherAmount": 0,
+        "otherCurrency": "",
+        "operation": "",
+        "currencyRate": 0,
+        "transactionFee": 0,
+        "exchangeDate": "2024-12-15T19:06:08.955Z"
+    }
+]
