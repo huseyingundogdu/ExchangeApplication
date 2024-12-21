@@ -6,3 +6,12 @@
 //
 
 import Foundation
+
+struct Account: Codable {
+    let id: String
+    let user_id: String
+    let currency: String
+    let currencySymbol: String
+    let balance: Double
+    let createdAt: String
+}
