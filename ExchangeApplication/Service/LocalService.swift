@@ -30,4 +30,12 @@ struct LocalService {
     func fetchCurrencies() async throws -> [Currency] {
         return try await fetch(Constants.MockPaths.allCurrencies)
     }
+    
+    func fetchAccounts(user_id: String) async throws -> [Account] {
+        return try await fetch(Constants.MockPaths.userAccounts)
+    }
+    
+    func fetchExchanges(by accountId: String) async throws -> [Exchange] {
+        return try await fetch(Constants.MockPaths.accountExchanges)
+    }
 }
