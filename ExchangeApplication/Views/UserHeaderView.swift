@@ -8,11 +8,49 @@
 import SwiftUI
 
 struct UserHeaderView: View {
+    
+    // FIXME: Temp. username.
+    let user = "Huseyin"
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack {
+            Button {
+                
+            } label: {
+                Image(systemName: "person")
+                    .imageScale(.large)
+                    .frame(width: 50, height: 50)
+                    .background(.contentSecondary)
+                    .clipShape(Circle())
+            } // TODO: It can be just image, without button.
+            
+            VStack(alignment: .leading) {
+                Text("Welcome Back")
+                    .font(.subheadline)
+                    .foregroundStyle(.gray)
+                Text(user) // TODO: User name will be here ViewModel's job.
+                    .font(.headline)
+                    .bold()
+            }
+            .foregroundStyle(.interactiveSecondary)
+            
+            Spacer()
+            
+            Button {
+                
+            } label: {
+                Image(systemName: "gear")
+                    .frame(width: 50, height: 50)
+                    .background(.interactivePrimary)
+                    .clipShape(Circle())
+                    .foregroundStyle(.interactiveSecondary)
+            }
+        }
+        
     }
 }
 
 #Preview {
     UserHeaderView()
+        .background(Color.contentPrimary)
 }

@@ -20,14 +20,14 @@
         "user_id": "1",
         "currency": "American Dollar",
         "currencySymbol": "USD",
-        "balance": 234.12,
+        "balance": 1234.00,
         "createdAt": "2024-12-15T19:06:08.971Z"
     },
     {
         "id": "uniqueID-3",
         "user_id": "1",
         "currency": "Turkish Liras",
-        "currencySymbol": "TRY",
+        "currencySymbol": "GBP",
         "balance": 234.12,
         "createdAt": "2024-12-15T19:06:08.971Z"
     }

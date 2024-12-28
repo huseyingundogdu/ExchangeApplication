@@ -12,7 +12,7 @@ struct CurrencyListView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text("All Coins")
+            Text("All Currencies")
                 .font(.title)
                 .bold()
                 .padding(.bottom, 10)
@@ -23,7 +23,10 @@ struct CurrencyListView: View {
              
             Divider()
             ForEach(vm.currencies, id: \.code) { currency in
-                CurrencyListRow(currency: currency)
+                NavigationLink(destination: EmptyView()) {
+                    CurrencyListRow(currency: currency)
+                }
+                .buttonStyle(.plain)
                 Divider()
             }
         }

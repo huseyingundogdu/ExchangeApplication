@@ -1,16 +1,54 @@
-[ /account/1
+[
     {
         "id": "1",
-        
-        "pln_account_id": "0",
-        "other_account_id": "2",
-        "plnAmount": 0,
-        "plnCurrency": "",
-        "otherAmount": 0,
-        "otherCurrency": "",
-        "operation": "",
-        "currencyRate": 0,
+        "pln_account_id": "uniqueID-0",
+        "other_account_id": "uniqueID-2",
+        "plnAmount": 100,
+        "plnCurrency": "PLN",
+        "otherAmount": 25,
+        "otherCurrency": "USD",
+        "operation": "buy",
+        "currencyRate": 4.0,
         "transactionFee": 0,
         "exchangeDate": "2024-12-15T19:06:08.955Z"
+    },
+    {
+        "id": "2",
+        "pln_account_id": "uniqueID-0",
+        "other_account_id": "uniqueID-2",
+        "plnAmount": 80,
+        "plnCurrency": "PLN",
+        "otherAmount": 20,
+        "otherCurrency": "USD",
+        "operation": "buy",
+        "currencyRate": 4.0,
+        "transactionFee": 2,
+        "exchangeDate": "2024-12-16T14:25:00.000Z"
+    },
+    {
+        "id": "3",
+        "pln_account_id": "uniqueID-0",
+        "other_account_id": "uniqueID-2",
+        "plnAmount": 50,
+        "plnCurrency": "PLN",
+        "otherAmount": 12.5,
+        "otherCurrency": "USD",
+        "operation": "sell",
+        "currencyRate": 4.0,
+        "transactionFee": 1,
+        "exchangeDate": "2024-12-17T09:15:30.000Z"
+    },
+    {
+        "id": "4",
+        "pln_account_id": "uniqueID-0",
+        "other_account_id": "uniqueID-2",
+        "plnAmount": 200,
+        "plnCurrency": "PLN",
+        "otherAmount": 50,
+        "otherCurrency": "USD",
+        "operation": "sell",
+        "currencyRate": 4.0,
+        "transactionFee": 3,
+        "exchangeDate": "2024-12-18T20:00:00.000Z"
     }
 ]

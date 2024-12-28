@@ -9,7 +9,11 @@ import SwiftUI
 
 struct CreateNewAccountView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            Text("Create New Account")
+                .foregroundStyle(.interactiveSecondary)
+        }
+        .navigationTitle("Create New Account")
     }
 }
 
