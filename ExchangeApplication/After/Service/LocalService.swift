@@ -32,7 +32,12 @@ struct LocalService {
     }
     
     func fetchAccounts(user_id: String) async throws -> [Account] {
-        return try await fetch(Constants.MockPaths.userAccounts)
+        do {
+            return try await fetch(Constants.MockPaths.userAccounts)
+        } catch {
+            print("Error fetch accounts local service")
+            throw NSError.invalidURL
+        }
     }
     
     func fetchExchanges(by accountId: String) async throws -> [Exchange] {

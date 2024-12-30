@@ -9,8 +9,6 @@ import SwiftUI
 
 struct AccountDetailView: View {
     
-    @StateObject private var vm = AccountListViewModel()
-    
     var account: Account
     //var exchanges: [Exchange] = vm.exchanges
     
@@ -70,54 +68,10 @@ struct AccountDetailView: View {
 
                     
                     
-                    ForEach(vm.exchanges, id: \.id) { exchange in
-                        if exchange.operation == "buy" {
-                            HStack {
-                                Text(exchange.plnCurrency + " to " + exchange.otherCurrency)
-                                    
-                                Spacer()
-                                
-                                Text("+\(exchange.otherAmount.formatted(.currency(code: exchange.otherCurrency)))")
-                                    .foregroundStyle(.green)
-                            }
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .padding()
-                            .background {
-                                RoundedRectangle(cornerRadius: 12)
-                                    .fill(.contentSecondary)
-                            }
-                            .fontWeight(.semibold)
-                            
-                        } else {
-                            HStack {
-                                Text(exchange.otherCurrency + " to " + exchange.plnCurrency)
-                                
-                                Spacer()
-                                
-                                Text("-\(exchange.otherAmount.formatted(.currency(code: exchange.otherCurrency)))")
-                                    .foregroundStyle(.red)
-                            }
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .padding()
-                            .background {
-                                RoundedRectangle(cornerRadius: 12)
-                                    .fill(.contentSecondary)
-                            }
-                            .fontWeight(.semibold)
-                            
-                        }
-                    }
                 }
             }
             .foregroundStyle(.white)
             .padding()
-            .onAppear {
-                Task {
-                    await vm.fetchExchanges(by: account.id)
-                }
-            }
-//            .navigationTitle(account.currencySymbol + " Account")
-//            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }

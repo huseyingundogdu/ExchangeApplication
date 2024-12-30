@@ -9,13 +9,13 @@ import SwiftUI
 
 @main
 struct ExchangeApplicationApp: App {
-//    @StateObject private var navigationState = NavigationState()
+    
     var body: some Scene {
         WindowGroup {
-            NavigationStack {
-                ContentView()
-                    .navigationTitle("Hello")
-            }
+            ContentView()
+                .environmentObject(RateModel(client: RateHTTPClient()))
+                .environmentObject(AccountModel())
+                .environmentObject(UserModel())
         }
     }
 }

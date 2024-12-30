@@ -16,7 +16,7 @@ struct TempAccount {
 
 struct AccountScrollView: View {
     
-    @StateObject private var vm = AccountListViewModel()
+    var accounts: [Account]?
     
     let totalBalance = 232123.45
     
@@ -24,11 +24,12 @@ struct AccountScrollView: View {
         
         ScrollView(.horizontal) {
             HStack {
-                ForEach(vm.accounts, id: \.id) { account in
-                    NavigationLink(destination: AccountDetailView(account: account)) { AccountCardView(account: account) }
-                        .buttonStyle(.plain)
+                if let accounts {
+                    ForEach(accounts, id: \.id) { account in
+                        NavigationLink(destination: AccountDetailView(account: account)) { AccountCardView(account: account) }
+                            .buttonStyle(.plain)
+                    }
                 }
-                
                 // MARK: - Create New Account Card Button
                 NavigationLink {
                     CreateNewAccountView()
@@ -59,11 +60,11 @@ struct AccountScrollView: View {
             }
         }
         .scrollIndicators(.hidden)
-        .onAppear {
-            Task {
-                await vm.fetchAccounts()
-            }
-        }
+//        .onAppear {
+//            Task {
+//                await vm.fetchAccounts()
+//            }
+//        }
     }
     
     private func maskString(_ input: String) -> String {

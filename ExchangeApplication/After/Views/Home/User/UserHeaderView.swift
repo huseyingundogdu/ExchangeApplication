@@ -10,7 +10,7 @@ import SwiftUI
 struct UserHeaderView: View {
     
     // FIXME: Temp. username.
-    let user = "Huseyin"
+    var user: User = User(id: "1", name: "Huso")
     
     var body: some View {
         HStack {
@@ -28,7 +28,7 @@ struct UserHeaderView: View {
                 Text("Welcome Back")
                     .font(.subheadline)
                     .foregroundStyle(.gray)
-                Text(user) // TODO: User name will be here ViewModel's job.
+                Text(user.name) // TODO: User name will be here ViewModel's job.
                     .font(.headline)
                     .bold()
             }
