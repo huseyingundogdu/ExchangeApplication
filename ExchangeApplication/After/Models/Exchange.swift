@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Exchange: Codable {
+struct Exchange: Codable, Identifiable {
     let id: String
     let pln_account_id: String
     let other_account_id: String

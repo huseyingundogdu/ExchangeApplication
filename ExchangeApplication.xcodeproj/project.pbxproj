@@ -7,10 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D0818B12D22E45F003D2A32 /* USDexchanges.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D0818B02D22E45F003D2A32 /* USDexchanges.json */; };
+		1D0818B32D22E47F003D2A32 /* PLNexchanges.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D0818B22D22E47F003D2A32 /* PLNexchanges.json */; };
+		1D0818B52D22E53C003D2A32 /* EURexchanges.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D0818B42D22E53C003D2A32 /* EURexchanges.json */; };
+		1D0818B72D22E663003D2A32 /* GBPexchanges.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D0818B62D22E663003D2A32 /* GBPexchanges.json */; };
+		1D0818B92D22ECAA003D2A32 /* LocalHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D0818B82D22ECAA003D2A32 /* LocalHTTPClient.swift */; };
+		1D0818BB2D22ED09003D2A32 /* ExchangeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D0818BA2D22ED09003D2A32 /* ExchangeModel.swift */; };
+		1D0818BD2D230022003D2A32 /* ExchangeRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D0818BC2D230022003D2A32 /* ExchangeRow.swift */; };
+		1D0818BF2D230181003D2A32 /* ExchangeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D0818BE2D230181003D2A32 /* ExchangeDetailView.swift */; };
 		1D0E68E72D20777300E948E4 /* CurrencyCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D0E68E62D20777300E948E4 /* CurrencyCode.swift */; };
 		1D0E68EB2D207BF900E948E4 /* Rate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D0E68EA2D207BF900E948E4 /* Rate.swift */; };
 		1D0E68EE2D20850500E948E4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D0E68ED2D20850500E948E4 /* User.swift */; };
 		1D0E68F02D20949700E948E4 /* CustomLineChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D0E68EF2D20949700E948E4 /* CustomLineChart.swift */; };
+		1D1F28102D24FB1A00A083D0 /* ExchangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1F280F2D24FB1A00A083D0 /* ExchangeView.swift */; };
+		1D1F28132D25081F00A083D0 /* Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1F28122D25081F00A083D0 /* Login.swift */; };
 		1D24ADE22CE6591300E9819E /* ExchangeApplicationApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D24ADE12CE6591300E9819E /* ExchangeApplicationApp.swift */; };
 		1D24ADE42CE6591300E9819E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D24ADE32CE6591300E9819E /* ContentView.swift */; };
 		1D24ADE62CE6591500E9819E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1D24ADE52CE6591500E9819E /* Assets.xcassets */; };
@@ -20,6 +30,7 @@
 		1D703C9D2D172F81001867C2 /* AccountDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D703C9C2D172F81001867C2 /* AccountDetailView.swift */; };
 		1D703CA12D1731D8001867C2 /* singleCurrencyByPeriod.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D703CA02D1731D8001867C2 /* singleCurrencyByPeriod.json */; };
 		1D703CA32D1732F8001867C2 /* Exchange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D703CA22D1732F8001867C2 /* Exchange.swift */; };
+		1D73B9EC2D29AA5000860CDD /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D73B9EB2D29AA5000860CDD /* Test.swift */; };
 		1D7547FF2D1F0E2300FEBE08 /* CustomPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D7547FE2D1F0E2300FEBE08 /* CustomPickerView.swift */; };
 		1D7E5AA92CF7EC6F0019094A /* allCurrencies.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D7E5AA82CF7EC6F0019094A /* allCurrencies.json */; };
 		1D7E5AAE2CF7ED830019094A /* LocalService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D7E5AAD2CF7ED830019094A /* LocalService.swift */; };
@@ -44,10 +55,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1D0818B02D22E45F003D2A32 /* USDexchanges.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = USDexchanges.json; sourceTree = "<group>"; };
+		1D0818B22D22E47F003D2A32 /* PLNexchanges.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = PLNexchanges.json; sourceTree = "<group>"; };
+		1D0818B42D22E53C003D2A32 /* EURexchanges.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = EURexchanges.json; sourceTree = "<group>"; };
+		1D0818B62D22E663003D2A32 /* GBPexchanges.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = GBPexchanges.json; sourceTree = "<group>"; };
+		1D0818B82D22ECAA003D2A32 /* LocalHTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalHTTPClient.swift; sourceTree = "<group>"; };
+		1D0818BA2D22ED09003D2A32 /* ExchangeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeModel.swift; sourceTree = "<group>"; };
+		1D0818BC2D230022003D2A32 /* ExchangeRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRow.swift; sourceTree = "<group>"; };
+		1D0818BE2D230181003D2A32 /* ExchangeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeDetailView.swift; sourceTree = "<group>"; };
 		1D0E68E62D20777300E948E4 /* CurrencyCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyCode.swift; sourceTree = "<group>"; };
 		1D0E68EA2D207BF900E948E4 /* Rate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rate.swift; sourceTree = "<group>"; };
 		1D0E68ED2D20850500E948E4 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		1D0E68EF2D20949700E948E4 /* CustomLineChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLineChart.swift; sourceTree = "<group>"; };
+		1D1F280F2D24FB1A00A083D0 /* ExchangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeView.swift; sourceTree = "<group>"; };
+		1D1F28122D25081F00A083D0 /* Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login.swift; sourceTree = "<group>"; };
 		1D24ADDE2CE6591300E9819E /* ExchangeApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExchangeApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1D24ADE12CE6591300E9819E /* ExchangeApplicationApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeApplicationApp.swift; sourceTree = "<group>"; };
 		1D24ADE32CE6591300E9819E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -58,6 +79,7 @@
 		1D703C9C2D172F81001867C2 /* AccountDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetailView.swift; sourceTree = "<group>"; };
 		1D703CA02D1731D8001867C2 /* singleCurrencyByPeriod.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = singleCurrencyByPeriod.json; sourceTree = "<group>"; };
 		1D703CA22D1732F8001867C2 /* Exchange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exchange.swift; sourceTree = "<group>"; };
+		1D73B9EB2D29AA5000860CDD /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 		1D7547FE2D1F0E2300FEBE08 /* CustomPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPickerView.swift; sourceTree = "<group>"; };
 		1D7E5AA82CF7EC6F0019094A /* allCurrencies.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = allCurrencies.json; sourceTree = "<group>"; };
 		1D7E5AAD2CF7ED830019094A /* LocalService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalService.swift; sourceTree = "<group>"; };
@@ -128,6 +150,22 @@
 			path = Enum;
 			sourceTree = "<group>";
 		};
+		1D1F280E2D24FB0000A083D0 /* Exchange */ = {
+			isa = PBXGroup;
+			children = (
+				1D1F280F2D24FB1A00A083D0 /* ExchangeView.swift */,
+			);
+			path = Exchange;
+			sourceTree = "<group>";
+		};
+		1D1F28112D25079E00A083D0 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				1D1F28122D25081F00A083D0 /* Login.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
 		1D24ADD52CE6591300E9819E = {
 			isa = PBXGroup;
 			children = (
@@ -156,6 +194,10 @@
 				1DC302912D15F2CA0024E758 /* userAccounts.json */,
 				1DC302932D15F6690024E758 /* exchangeOperation.json */,
 				1D703CA02D1731D8001867C2 /* singleCurrencyByPeriod.json */,
+				1D0818B22D22E47F003D2A32 /* PLNexchanges.json */,
+				1D0818B42D22E53C003D2A32 /* EURexchanges.json */,
+				1D0818B02D22E45F003D2A32 /* USDexchanges.json */,
+				1D0818B62D22E663003D2A32 /* GBPexchanges.json */,
 			);
 			path = ExchangeApplication;
 			sourceTree = "<group>";
@@ -198,10 +240,12 @@
 		1D7E5AA72CF7EBFC0019094A /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				1D1F28112D25079E00A083D0 /* Auth */,
 				1DB4DF3B2D21FA7600570036 /* CustomComponents */,
 				1DB4DF3A2D21FA2D00570036 /* Settings */,
 				1DB4DF392D21FA2600570036 /* History */,
 				1DB4DF382D21FA2000570036 /* Home */,
+				1D73B9EB2D29AA5000860CDD /* Test.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -212,6 +256,7 @@
 				1DB4DF2A2D21DFDD00570036 /* RateModel.swift */,
 				1DB4DF2F2D21E99900570036 /* AccountModel.swift */,
 				1DB4DF342D21F38100570036 /* UserModel.swift */,
+				1D0818BA2D22ED09003D2A32 /* ExchangeModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -221,6 +266,7 @@
 			children = (
 				1DB4DF2C2D21E4A100570036 /* RateHTTPClient.swift */,
 				1DB4DF322D21F01400570036 /* AccountHTTPClient.swift */,
+				1D0818B82D22ECAA003D2A32 /* LocalHTTPClient.swift */,
 			);
 			path = HTTPClients;
 			sourceTree = "<group>";
@@ -228,6 +274,7 @@
 		1DB4DF382D21FA2000570036 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				1D1F280E2D24FB0000A083D0 /* Exchange */,
 				1DB4DF3C2D21FB2800570036 /* User */,
 				1D703C992D172E28001867C2 /* Accounts */,
 				1DB4DF3E2D21FB5300570036 /* TransferCalculator */,
@@ -255,6 +302,8 @@
 		1DB4DF3B2D21FA7600570036 /* CustomComponents */ = {
 			isa = PBXGroup;
 			children = (
+				1D0818BC2D230022003D2A32 /* ExchangeRow.swift */,
+				1D0818BE2D230181003D2A32 /* ExchangeDetailView.swift */,
 			);
 			path = CustomComponents;
 			sourceTree = "<group>";
@@ -336,11 +385,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D24ADE92CE6591500E9819E /* Preview Assets.xcassets in Resources */,
+				1D0818B32D22E47F003D2A32 /* PLNexchanges.json in Resources */,
 				1DC302922D15F2CA0024E758 /* userAccounts.json in Resources */,
 				1DC302942D15F6690024E758 /* exchangeOperation.json in Resources */,
+				1D0818B72D22E663003D2A32 /* GBPexchanges.json in Resources */,
 				1D24ADE62CE6591500E9819E /* Assets.xcassets in Resources */,
 				1D703CA12D1731D8001867C2 /* singleCurrencyByPeriod.json in Resources */,
+				1D0818B52D22E53C003D2A32 /* EURexchanges.json in Resources */,
 				1D7E5AA92CF7EC6F0019094A /* allCurrencies.json in Resources */,
+				1D0818B12D22E45F003D2A32 /* USDexchanges.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -351,9 +404,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D0818BB2D22ED09003D2A32 /* ExchangeModel.swift in Sources */,
+				1D1F28132D25081F00A083D0 /* Login.swift in Sources */,
 				1D24ADE42CE6591300E9819E /* ContentView.swift in Sources */,
 				1D7547FF2D1F0E2300FEBE08 /* CustomPickerView.swift in Sources */,
 				1D7E5AB02CF7ED930019094A /* Currency.swift in Sources */,
+				1D0818BF2D230181003D2A32 /* ExchangeDetailView.swift in Sources */,
 				1DB4DF412D21FC3300570036 /* HomeView.swift in Sources */,
 				1D7E5AAE2CF7ED830019094A /* LocalService.swift in Sources */,
 				1D703C9D2D172F81001867C2 /* AccountDetailView.swift in Sources */,
@@ -365,10 +421,14 @@
 				1DB4DF2D2D21E4A100570036 /* RateHTTPClient.swift in Sources */,
 				1DB4DF472D22042C00570036 /* TabbedItems.swift in Sources */,
 				1DB4DF2B2D21DFDD00570036 /* RateModel.swift in Sources */,
+				1D73B9EC2D29AA5000860CDD /* Test.swift in Sources */,
 				1D0E68E72D20777300E948E4 /* CurrencyCode.swift in Sources */,
 				1DC302982D15FB000024E758 /* Account.swift in Sources */,
+				1D0818BD2D230022003D2A32 /* ExchangeRow.swift in Sources */,
+				1D0818B92D22ECAA003D2A32 /* LocalHTTPClient.swift in Sources */,
 				1D7E5ABA2CF7F50C0019094A /* AccountScrollView.swift in Sources */,
 				1DB4DF372D21F4F100570036 /* NSError.swift in Sources */,
+				1D1F28102D24FB1A00A083D0 /* ExchangeView.swift in Sources */,
 				1DB4DF432D22011000570036 /* HistoryView.swift in Sources */,
 				1D24ADE22CE6591300E9819E /* ExchangeApplicationApp.swift in Sources */,
 				1DB4DF352D21F38100570036 /* UserModel.swift in Sources */,

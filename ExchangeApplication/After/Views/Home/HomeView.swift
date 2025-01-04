@@ -77,11 +77,12 @@ extension HomeView {
                         .bold()
                         .padding(10)
                         
-                    
-                    Text("Exchange")
-                        .font(.subheadline)
-                        .foregroundStyle(.white)
-                        .bold()
+                    NavigationLink(destination: ExchangeView()) {
+                        Text("Exchange")
+                            .font(.subheadline)
+                            .foregroundStyle(.white)
+                            .bold()
+                    }
                 }
                 .padding(.trailing)
                 .background(.interactiveSecondary)

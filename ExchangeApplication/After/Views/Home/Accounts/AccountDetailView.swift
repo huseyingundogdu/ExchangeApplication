@@ -11,6 +11,7 @@ struct AccountDetailView: View {
     
     var account: Account
     //var exchanges: [Exchange] = vm.exchanges
+    @EnvironmentObject private var accountModel: AccountModel
     
     var body: some View {
         ZStack {
@@ -65,13 +66,21 @@ struct AccountDetailView: View {
                         .font(.title2)
                         .fontWeight(.bold)
                         .frame(maxWidth: .infinity, alignment: .leading)
-
-                    
-                    
+                        
+                    ForEach(accountModel.exchanges) { exchange in
+                        NavigationLink(destination: ExchangeDetailView(exchange: exchange)) {
+                            ExchangeRow(exchange: exchange)
+                        }
+                    }  
                 }
             }
             .foregroundStyle(.white)
             .padding()
+        }
+        .onAppear {
+            Task {
+                await accountModel.getExchanges(by: account.currencySymbol)
+            }
         }
     }
 }
@@ -89,5 +98,6 @@ struct AccountDetailView: View {
     
     return NavigationStack {
         AccountDetailView(account: previewAccount)
+            .environmentObject(AccountModel())
     }
 }

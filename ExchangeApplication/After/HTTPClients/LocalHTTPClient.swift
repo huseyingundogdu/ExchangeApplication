@@ -1,13 +1,13 @@
 //
-//  LocalService.swift
+//  ExchangeHTTPClient.swift
 //  ExchangeApplication
 //
-//  Created by Huseyin on 28/11/2024.
+//  Created by Huseyin on 30/12/2024.
 //
 
 import Foundation
 
-struct LocalService {
+class LocalHTTPClient {
     private func fetch<T: Decodable>(_ resource: String) async throws -> T {
         guard let path = Bundle.main.path(forResource: resource, ofType: "json") else {
             print("path error")
@@ -24,19 +24,6 @@ struct LocalService {
             print("data error2")
             print(error.localizedDescription)
             fatalError("data")
-        }
-    }
-    
-    func fetchCurrencies() async throws -> [Currency] {
-        return try await fetch(Constants.MockPaths.allCurrencies)
-    }
-    
-    func fetchAccounts(user_id: String) async throws -> [Account] {
-        do {
-            return try await fetch(Constants.MockPaths.userAccounts)
-        } catch {
-            print("Error fetch accounts local service")
-            throw NSError.invalidURL
         }
     }
     

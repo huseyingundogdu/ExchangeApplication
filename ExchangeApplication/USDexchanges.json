@@ -1,8 +1,8 @@
 [
     {
         "id": "1",
-        "pln_account_id": "uniqueID-PLN-1",
-        "other_account_id": "uniqueID-USD-3",
+        "pln_account_id": "PLN",
+        "other_account_id": "USD",
         "plnAmount": 100,
         "plnCurrency": "PLN",
         "otherAmount": 25,
@@ -14,8 +14,8 @@
     },
     {
         "id": "2",
-        "pln_account_id": "uniqueID-0",
-        "other_account_id": "uniqueID-2",
+        "pln_account_id": "PLN",
+        "other_account_id": "USD",
         "plnAmount": 80,
         "plnCurrency": "PLN",
         "otherAmount": 20,
@@ -27,8 +27,8 @@
     },
     {
         "id": "3",
-        "pln_account_id": "uniqueID-0",
-        "other_account_id": "uniqueID-2",
+        "pln_account_id": "PLN",
+        "other_account_id": "USD",
         "plnAmount": 50,
         "plnCurrency": "PLN",
         "otherAmount": 12.5,
@@ -40,8 +40,8 @@
     },
     {
         "id": "4",
-        "pln_account_id": "uniqueID-0",
-        "other_account_id": "uniqueID-2",
+        "pln_account_id": "PLN",
+        "other_account_id": "USD",
         "plnAmount": 200,
         "plnCurrency": "PLN",
         "otherAmount": 50,

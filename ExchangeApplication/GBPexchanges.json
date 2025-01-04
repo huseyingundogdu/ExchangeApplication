@@ -1,0 +1,54 @@
+[
+    {
+        "id": "8",
+        "pln_account_id": "PLN",
+        "other_account_id": "GBP",
+        "plnAmount": 200,
+        "plnCurrency": "PLN",
+        "otherAmount": 50,
+        "otherCurrency": "GBP",
+        "operation": "sell",
+        "currencyRate": 4.0,
+        "transactionFee": 3,
+        "exchangeDate": "2024-12-22T20:00:00.000Z"
+    },
+    {
+        "id": "9",
+        "pln_account_id": "PLN",
+        "other_account_id": "GBP",
+        "plnAmount": 200,
+        "plnCurrency": "PLN",
+        "otherAmount": 50,
+        "otherCurrency": "GBP",
+        "operation": "sell",
+        "currencyRate": 4.0,
+        "transactionFee": 3,
+        "exchangeDate": "2024-12-23T20:00:00.000Z"
+    },
+    {
+        "id": "10",
+        "pln_account_id": "PLN",
+        "other_account_id": "GBP",
+        "plnAmount": 200,
+        "plnCurrency": "PLN",
+        "otherAmount": 50,
+        "otherCurrency": "GBP",
+        "operation": "sell",
+        "currencyRate": 4.0,
+        "transactionFee": 3,
+        "exchangeDate": "2024-12-24T20:00:00.000Z"
+    },
+    {
+        "id": "11",
+        "pln_account_id": "PLN",
+        "other_account_id": "GBP",
+        "plnAmount": 200,
+        "plnCurrency": "PLN",
+        "otherAmount": 50,
+        "otherCurrency": "GBP",
+        "operation": "sell",
+        "currencyRate": 4.0,
+        "transactionFee": 3,
+        "exchangeDate": "2024-12-25T20:00:00.000Z"
+    }
+]

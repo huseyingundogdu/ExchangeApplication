@@ -52,6 +52,8 @@ struct ContentView: View {
                 .tabItem {
                     Label("History", systemImage: "list.bullet").symbolRenderingMode(.multicolor)
                 }
+                .environmentObject(ExchangeModel(client: LocalHTTPClient()))
+                
             
             SettingsView()
                 .tabItem {

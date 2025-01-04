@@ -9,7 +9,14 @@ import SwiftUI
 
 struct SettingsView: View {
     var body: some View {
-        Text("SettingsView")
+        ZStack {
+            Color.contentPrimary.ignoresSafeArea()
+            VStack {
+                Button("Logout") {
+                    
+                }
+            }
+        }
     }
 }
 

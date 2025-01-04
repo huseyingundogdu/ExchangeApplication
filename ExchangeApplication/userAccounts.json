@@ -1,6 +1,6 @@
 [
     {
-        "id": "uniqueID-0",
+        "id": "uniqueID-PLN-1",
         "user_id": "1",
         "currency": "Polish Zloty",
         "currencySymbol": "PLN",
@@ -8,7 +8,7 @@
         "createdAt": "2024-12-15T19:06:08.971Z"
     },
     {
-        "id": "uniqueID-1",
+        "id": "uniqueID-EUR-2",
         "user_id": "1",
         "currency": "Euro",
         "currencySymbol": "EUR",
@@ -16,7 +16,7 @@
         "createdAt": "2024-12-15T19:06:08.971Z"
     },
     {
-        "id": "uniqueID-2",
+        "id": "uniqueID-USD-3",
         "user_id": "1",
         "currency": "American Dollar",
         "currencySymbol": "USD",
@@ -24,9 +24,9 @@
         "createdAt": "2024-12-15T19:06:08.971Z"
     },
     {
-        "id": "uniqueID-3",
+        "id": "uniqueID-GBP-4",
         "user_id": "1",
-        "currency": "Turkish Liras",
+        "currency": "Pound sterling",
         "currencySymbol": "GBP",
         "balance": 234.12,
         "createdAt": "2024-12-15T19:06:08.971Z"
