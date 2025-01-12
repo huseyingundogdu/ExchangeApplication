@@ -8,16 +8,16 @@
 import SwiftUI
 
 struct AccountDetailView: View {
-    
-    var account: Account
-    //var exchanges: [Exchange] = vm.exchanges
     @EnvironmentObject private var accountModel: AccountModel
+
+    var account: Account
     
     var body: some View {
         ZStack {
             Color.contentPrimary.ignoresSafeArea()
             ScrollView {
                 VStack {
+                    
                     HStack {
                         Image(account.currencySymbol)
                             .resizable()
@@ -45,15 +45,13 @@ struct AccountDetailView: View {
                     }
                 }
                 
-                Button {
-                    
-                } label: {
+                NavigationLink(destination: SellView(code: CurrencyCode(rawValue: account.currencySymbol) ?? .USD)) {
                     VStack {
                         Image(systemName: "arrow.left.arrow.right.circle.fill")
                             .resizable()
                             .frame(width: 50, height: 50)
                             .foregroundStyle(.interactiveSecondary)
-                            
+                        
                         Text("Exchange")
                             .fontWeight(.heavy)
                             .foregroundStyle(.interactiveSecondary)
@@ -76,10 +74,20 @@ struct AccountDetailView: View {
             }
             .foregroundStyle(.white)
             .padding()
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button("Delete Account") {
+                        Task {
+                            await accountModel.deleteAccount(accountID: account.id)
+                        }
+                    }
+                    .foregroundStyle(.red)
+                }
+            }
         }
         .onAppear {
             Task {
-                await accountModel.getExchanges(by: account.currencySymbol)
+                await accountModel.getExchanges(accountID: account.id)
             }
         }
     }
@@ -88,7 +96,7 @@ struct AccountDetailView: View {
 #Preview {
     let previewAccount = Account(
         id: "uniqueID-2",
-        user_id: "1",
+        userId: "1",
         currency: "American Dollar",
         currencySymbol: "USD",
         balance: 1234.00,
@@ -99,5 +107,6 @@ struct AccountDetailView: View {
     return NavigationStack {
         AccountDetailView(account: previewAccount)
             .environmentObject(AccountModel())
+            .environmentObject(CurrencyModel())
     }
 }

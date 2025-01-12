@@ -8,6 +8,6 @@
 import Foundation
 
 enum CurrencyCode: String, CaseIterable, Identifiable {
-    case USD, CHF, EUR, GBP, JPY, CZK, NOK
+    case AUD, CAD, DKK, HUF, SEK, USD, CHF, EUR, GBP, JPY, CZK, NOK
     var id: Self { self }
 }

@@ -60,11 +60,6 @@ struct AccountScrollView: View {
             }
         }
         .scrollIndicators(.hidden)
-//        .onAppear {
-//            Task {
-//                await vm.fetchAccounts()
-//            }
-//        }
     }
     
     private func maskString(_ input: String) -> String {

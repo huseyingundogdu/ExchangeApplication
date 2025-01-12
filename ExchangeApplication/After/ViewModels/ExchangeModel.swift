@@ -7,14 +7,16 @@
 
 import Foundation
 
+struct ExchangeRequest: Codable {
+    let plnAccount_id: String
+    let otherAccount_id: String
+    let currency_code: String
+    let amount: Double
+}
+
 @MainActor
 class ExchangeModel: ObservableObject {
 
-    let client: LocalHTTPClient
-    
-    init(client: LocalHTTPClient) {
-        self.client = client
-    }
     
     @Published var exchanges: [Exchange] = []
     
@@ -23,10 +25,16 @@ class ExchangeModel: ObservableObject {
     }
     
     func getAllExchanges() async throws -> [Exchange] {
-        try await client.fetchAllExchanges()
+        return []
     }
     
-    func getExchanges(by id: String) async throws -> [Exchange] {
-        try await client.fetchExchanges(by: id)
+    func getExchanges(accountID: String) async {
+
+    }
+    
+    func postExchange(plnAccountID: String, otherAccountID: String, currencyCode: String, amount: Double) async {
+        
+        
+        
     }
 }

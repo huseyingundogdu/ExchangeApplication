@@ -8,12 +8,15 @@
 import SwiftUI
 
 struct SettingsView: View {
+    
+    @EnvironmentObject var authModel: AuthModel
+    
     var body: some View {
         ZStack {
             Color.contentPrimary.ignoresSafeArea()
             VStack {
                 Button("Logout") {
-                    
+                    authModel.logout()
                 }
             }
         }

@@ -50,7 +50,7 @@ struct AccountCardView: View {
 #Preview {
     AccountCardView(account: Account(
         id: "uniqueID-0",
-        user_id: "1",
+        userId: "1",
         currency: "Polish Zloty",
         currencySymbol: "PLN",
         balance: 234.12,

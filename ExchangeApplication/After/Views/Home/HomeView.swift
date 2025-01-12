@@ -8,9 +8,8 @@
 import SwiftUI
 
 struct HomeView: View {
-    @EnvironmentObject private var rateModel: RateModel
+    @EnvironmentObject private var currencyModel: CurrencyModel
     @EnvironmentObject private var accountModel: AccountModel
-    @EnvironmentObject private var userModel: UserModel
     
     var body: some View {
         NavigationStack {
@@ -20,7 +19,7 @@ struct HomeView: View {
                 ScrollView {
                     VStack(spacing: 20) {
                         
-                        UserHeaderView(user: userModel.user)
+                        //UserHeaderView(user: userModel.user)
                         
                         AccountScrollView(accounts: accountModel.accounts)
                             .onAppear {
@@ -31,15 +30,15 @@ struct HomeView: View {
                         
                         buttonSection // FIXME: Idk what to do but we can make it better than extension.
                         
-                        TransferCalculator(rates: rateModel.rates, fromCode: $rateModel.code)
+                        TransferCalculator(rates: currencyModel.rates?.rates, fromCode: $currencyModel.code)
                             .onAppear {
                                 Task {
-                                    rateModel.rates = try await rateModel.get30RateData(from: rateModel.code)
+                                    await currencyModel.getCurrencyRates(code: .USD)
                                 }
                             }
-                            .onChange(of: rateModel.code) { _, newValue in
+                            .onChange(of: currencyModel.code) { _, newValue in
                                 Task {
-                                    rateModel.rates = try await rateModel.get30RateData(from: rateModel.code)
+                                    await currencyModel.getCurrencyRates(code: currencyModel.code)
                                 }
                             }
                         Rectangle()
@@ -58,9 +57,8 @@ struct HomeView: View {
 
 #Preview {
     HomeView()
-        .environmentObject(RateModel(client: RateHTTPClient()))
+        .environmentObject(CurrencyModel())
         .environmentObject(AccountModel())
-        .environmentObject(UserModel())
 }
 
 extension HomeView {
@@ -77,7 +75,7 @@ extension HomeView {
                         .bold()
                         .padding(10)
                         
-                    NavigationLink(destination: ExchangeView()) {
+                    NavigationLink(destination: BuyView()) {
                         Text("Exchange")
                             .font(.subheadline)
                             .foregroundStyle(.white)

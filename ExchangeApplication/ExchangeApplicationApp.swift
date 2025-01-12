@@ -9,13 +9,19 @@ import SwiftUI
 
 @main
 struct ExchangeApplicationApp: App {
+    @StateObject private var authModel = AuthModel()
+    @StateObject private var accountModel = AccountModel()
+    @StateObject private var currencyModel = CurrencyModel()
+    @StateObject private var exchangeModel = ExchangeModel()
     
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environmentObject(RateModel(client: RateHTTPClient()))
-                .environmentObject(AccountModel())
-                .environmentObject(UserModel())
+                .environmentObject(authModel)
+                .environmentObject(accountModel)
+                .environmentObject(currencyModel)
+                .environmentObject(exchangeModel)
+                
         }
     }
 }

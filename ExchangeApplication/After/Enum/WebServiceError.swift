@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum NSError: Error {
+enum WebServiceError: Error {
     case invalidURL
     case invalidResponse
     case invalidData

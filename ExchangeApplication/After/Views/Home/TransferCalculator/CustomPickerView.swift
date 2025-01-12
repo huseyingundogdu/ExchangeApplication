@@ -30,7 +30,6 @@ struct CustomPickerView: View {
         .sheet(isPresented: $showingSheet) {
             List {
                 ForEach(CurrencyCode.allCases) { code in
-
                     Button {
                         selectedCode = code
                         showingSheet = false
@@ -49,7 +48,10 @@ struct CustomPickerView: View {
                 }
             }
             .listStyle(.plain)
+            .scrollIndicators(.hidden)
             .background(Color.contentPrimary)
+            .presentationBackground(.red)
+            .presentationDetents([.medium])
         }
     }
 }

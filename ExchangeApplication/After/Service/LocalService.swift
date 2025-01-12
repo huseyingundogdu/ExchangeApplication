@@ -36,7 +36,7 @@ struct LocalService {
             return try await fetch(Constants.MockPaths.userAccounts)
         } catch {
             print("Error fetch accounts local service")
-            throw NSError.invalidURL
+            throw WebServiceError.invalidURL
         }
     }
     

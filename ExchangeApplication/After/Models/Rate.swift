@@ -15,11 +15,12 @@ struct LineChartDataX: Codable {
 }
 
 struct RateX: Codable, Identifiable {
-    var id: String { no }
     let no: String
     let effectiveDate: String
     let bid: Double
     let ask: Double
+    let mid: Double?
+    var id: String { no }
 }
 
 typealias Rates = [RateX]

@@ -41,7 +41,7 @@ struct HistoryView: View {
 
 #Preview {
     HistoryView()
-        .environmentObject(ExchangeModel(client: LocalHTTPClient()))
+        
 }
 
 

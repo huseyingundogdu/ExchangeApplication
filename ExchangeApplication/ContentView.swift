@@ -9,63 +9,38 @@ import SwiftUI
 
 struct ContentView: View {
     
-    init() {
-        // Configure tab bar appearance
-        let appearance = UITabBarAppearance()
-        appearance.configureWithOpaqueBackground() // Ensures a consistent background appearance
-        appearance.backgroundColor = UIColor.contentPrimary // Set the tab bar background color
-        
-        // Add a stroke (separator) at the top of the tab bar
-        appearance.shadowColor = UIColor.interactiveSecondary // Set the stroke color
-        // Optional: Use a shadowImage if you need more control over the appearance.
-        // appearance.shadowImage = UIImage(named: "CustomStrokeImage")
-        
-        // Configure item appearance for normal and selected states
-        let itemAppearance = UITabBarItemAppearance()
-        itemAppearance.normal.iconColor = UIColor.interactivePrimary // Color for unselected items
-        itemAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.interactivePrimary]
-        itemAppearance.selected.iconColor = UIColor.interactiveSecondary // Color for selected items
-        itemAppearance.selected.titleTextAttributes = [.foregroundColor: UIColor.interactiveSecondary]
-        appearance.stackedLayoutAppearance = itemAppearance // Apply item appearance
-        
-        // Assign configured appearance to the UITabBar
-        UITabBar.appearance().scrollEdgeAppearance = appearance
-        UITabBar.appearance().standardAppearance = appearance
-        
-        // Set tintColor to align selected state (fallback for unsupported SF Symbols)
-        UITabBar.appearance().tintColor = UIColor.interactiveSecondary
-    }
+    @EnvironmentObject var authModel: AuthModel
     
     var body: some View {
-        
-        TabView {
-            
-            HomeView()
-                .tabItem {
-                    Label("Home", systemImage: "house").symbolRenderingMode(.multicolor)
-                }
-                .environmentObject(UserModel())
-                .environmentObject(AccountModel())
-                .environmentObject(RateModel(client: RateHTTPClient()))
-            
-            HistoryView()
-                .tabItem {
-                    Label("History", systemImage: "list.bullet").symbolRenderingMode(.multicolor)
-                }
-                .environmentObject(ExchangeModel(client: LocalHTTPClient()))
+        if authModel.isAuthenticated {
+            TabView {
+                HomeView()
+                    .tabItem {
+                        Label("Home", systemImage: "house").symbolRenderingMode(.multicolor)
+                    }
                 
-            
-            SettingsView()
-                .tabItem {
-                    Label("Settings", systemImage: "gearshape").symbolRenderingMode(.multicolor)
-                }
+                HistoryView()
+                    .tabItem {
+                        Label("History", systemImage: "list.bullet").symbolRenderingMode(.multicolor)
+                    }
+                    .environmentObject(ExchangeModel())
+                
+                
+                SettingsView()
+                    .tabItem {
+                        Label("Settings", systemImage: "gearshape").symbolRenderingMode(.multicolor)
+                    }
+            }
+        } else {
+            Login()
         }
-        
-        
-        
     }
 }
 
 #Preview {
     ContentView()
+        .environmentObject(AuthModel())
+        .environmentObject(AccountModel())
+        .environmentObject(CurrencyModel())
+        .environmentObject(ExchangeModel())
 }

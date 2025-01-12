@@ -9,8 +9,10 @@ import SwiftUI
 
 struct Login: View {
     
-    @State private var username: String = ""
-    @State private var password: String = ""
+    @EnvironmentObject private var authModel: AuthModel
+    
+    @State private var email: String = "hg@gmail.com"
+    @State private var password: String = "123123"
     
     var body: some View {
         ZStack {
@@ -31,7 +33,8 @@ struct Login: View {
                 Spacer()
                 Text("---   Zlotify   ---")
                 VStack(spacing: 20) {
-                    TextField("Username", text: $username)
+                    TextField("Username", text: $email)
+                        .textInputAutocapitalization(.never)
                         .padding()
                         .background(
                             RoundedRectangle(cornerRadius: 12)
@@ -51,7 +54,10 @@ struct Login: View {
                 
                 VStack(spacing: 30) {
                     Button("Login") {
-                        
+                        //userModel.login(email: email, password: password)
+                        Task {
+                            await authModel.login(email: email, password: password)
+                        }
                     }
                     .font(.title3)
                     .frame(maxWidth: .infinity)
@@ -60,7 +66,7 @@ struct Login: View {
                     .background(RoundedRectangle(cornerRadius: 12).fill(.interactiveSecondary))
                     
                     Button("Register") {
-                        
+                        UserDefaults.standard.removeObject(forKey: "jsonwebtoken")
                     }
                     .font(.callout)
                     .foregroundStyle(.interactiveSecondary)
