@@ -19,7 +19,7 @@ class CurrencyModel: ObservableObject {
     func getCurrencyByCode(code: CurrencyCode) async {
         do {
             let response = try await webservice.request(
-                endpoint: "/currency/id/\(code.rawValue)",
+                endpoint: "/currency/id/\(code.rawValue.lowercased())",
                 method: "GET",
                 responseType: Currency.self
             )
@@ -35,7 +35,7 @@ class CurrencyModel: ObservableObject {
     func getCurrencyRates(code: CurrencyCode) async {
         do {
             let response = try await webservice.request(
-                endpoint: "/currency/table/period/id/\(code.rawValue)",
+                endpoint: "/currency/table/period/\(code.rawValue)",
                 method: "GET",
                 responseType: LineChartDataX.self
             )

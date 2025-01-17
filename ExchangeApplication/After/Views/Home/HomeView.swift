@@ -18,16 +18,20 @@ struct HomeView: View {
                 
                 ScrollView {
                     VStack(spacing: 20) {
-                        
-                        //UserHeaderView(user: userModel.user)
-                        
-                        AccountScrollView(accounts: accountModel.accounts)
-                            .onAppear {
-                                Task {
+                        VStack {
+                            UserHeaderView()
+                            
+                            Text("Accounts")
+                                .font(.title)
+                                .fontWeight(.semibold)
+                                .foregroundStyle(.white)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                            
+                            AccountScrollView(accounts: accountModel.accounts)
+                                .task {
                                     await accountModel.getAccounts()
                                 }
-                            }
-                        
+                        }
                         buttonSection // FIXME: Idk what to do but we can make it better than extension.
                         
                         TransferCalculator(rates: currencyModel.rates?.rates, fromCode: $currencyModel.code)
@@ -49,9 +53,9 @@ struct HomeView: View {
                 .padding()
                 .scrollIndicators(.hidden)
                 .ignoresSafeArea(edges: .bottom)
+                
             }
         }
-        
     }
 }
 
@@ -64,31 +68,12 @@ struct HomeView: View {
 extension HomeView {
     var buttonSection: some View {
         HStack(spacing: 5) {
-            Button {
-                
-            } label: {
-                HStack(spacing: 0) {
-                    Image(systemName: "arrow.left.arrow.right")
-                        .frame(width: 20, height: 20)
-                        .foregroundStyle(.white)
-                        .clipShape(Circle())
-                        .bold()
-                        .padding(10)
-                        
-                    NavigationLink(destination: BuyView()) {
-                        Text("Exchange")
-                            .font(.subheadline)
-                            .foregroundStyle(.white)
-                            .bold()
-                    }
-                }
-                .padding(.trailing)
-                .background(.interactiveSecondary)
-                .clipShape(Capsule())
-            }
             
             Button {
-                
+                Task {
+                    let id = await accountModel.getPLNAccountID()
+                    await accountModel.depositPLNAccount(accountID: id ?? "")
+                }
             } label: {
                 HStack {
                     Image(systemName: "plus")

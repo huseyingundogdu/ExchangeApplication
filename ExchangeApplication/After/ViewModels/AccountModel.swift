@@ -20,6 +20,7 @@ class AccountModel: ObservableObject {
     @Published var exchanges: [Exchange] = [] // related to History
     @Published var account: Account?
     
+    
     func getAccounts() async {
         do {
             let response = try await webservice.request(
@@ -27,14 +28,17 @@ class AccountModel: ObservableObject {
                 method: "GET",
                 responseType: [Account].self
             )
-//            print(response)
+            
             DispatchQueue.main.async {
-                self.accounts = response
+                if let response = response {
+                    self.accounts = response
+                }
             }
         } catch {
-            print(error.localizedDescription)
+            print(error.localizedDescription + "getAccounts")
         }
     }
+    
     
     func getAccount(id: String) async {
         do {
@@ -43,12 +47,27 @@ class AccountModel: ObservableObject {
                 method: "GET",
                 responseType: Account.self
             )
-//            print(response)
+
             DispatchQueue.main.async {
                 self.account = response
             }
         } catch {
-            print(error.localizedDescription)
+            print(error.localizedDescription + "getAccount(id:)")
+        }
+    }
+    
+    func fetchAccount(id: String) async -> Account? {
+        do {
+            let response = try await webservice.request(
+                endpoint: "/account/\(id)",
+                method: "GET",
+                responseType: Account.self
+            )
+
+            return response
+        } catch {
+            print(error.localizedDescription + "getAccount(id:)")
+            return nil
         }
     }
     
@@ -59,12 +78,29 @@ class AccountModel: ObservableObject {
                 method: "GET",
                 responseType: [Account].self
             )
-            let plnAccount = accounts.filter { $0.currencySymbol == "AUD" }
+            let plnAccount = accounts.filter { $0.currencySymbol == "PLN" }
             return plnAccount[0].id
             
         } catch {
-            print(error.localizedDescription)
+            print(error.localizedDescription + "getPLNAccountID")
             return nil
+        }
+    }
+    
+    func depositPLNAccount(accountID: String) async {
+        do {
+            let response = try await webservice.request(
+                endpoint: "/account/\(accountID)",
+                method: "PATCH",
+                responseType: Account.self
+            )
+            
+            //Message can set
+            
+            await getAccounts()
+            
+        } catch {
+            print(error.localizedDescription)
         }
     }
     
@@ -78,7 +114,27 @@ class AccountModel: ObservableObject {
             )
             
             DispatchQueue.main.async {
-                self.exchanges = response
+                if let response {
+                    self.exchanges = response
+                }
+            }
+        } catch {
+            print(error.localizedDescription)
+        }
+    }
+    
+    func getAllExchanges() async {
+        do {
+            let response = try await webservice.request(
+                endpoint: "/exchange",
+                method: "GET",
+                responseType: [Exchange].self
+            )
+            
+            DispatchQueue.main.async {
+                if let response {
+                    self.exchanges = response
+                }
             }
         } catch {
             print(error.localizedDescription)
@@ -86,7 +142,7 @@ class AccountModel: ObservableObject {
     }
     
     func createAccount(code: CurrencyCode) async {
-        let accountRequest = AccountRequest(currencyCode: code.rawValue)
+        let accountRequest = AccountRequest(currencyCode: code.rawValue.lowercased())
         
         guard let body = try? JSONEncoder().encode(accountRequest) else {
             print("create account: encode error")
@@ -107,6 +163,7 @@ class AccountModel: ObservableObject {
         }
     }
     
+    
     func deleteAccount(accountID: String) async {
         do {
             let response = try await webservice.request(
@@ -118,6 +175,21 @@ class AccountModel: ObservableObject {
             print("Account Deleted: \(response)")
         } catch {
             print(error.localizedDescription)
+        }
+    }
+    
+    func createPLNAccount() async {
+        do {
+            _ = try await webservice.request(
+                endpoint: "/account/pln",
+                method: "POST",
+                responseType: Account.self
+            )
+            
+        } catch let error as WebServiceError {
+            print(error.description)
+        } catch {
+            print("cratePLNAccount() error: \(error.localizedDescription)")
         }
     }
 }

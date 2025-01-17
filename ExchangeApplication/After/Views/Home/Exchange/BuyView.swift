@@ -9,9 +9,11 @@ import SwiftUI
 
 struct BuyView: View {
     @EnvironmentObject var currencyModel: CurrencyModel
-//    @EnvironmentObject var accountModel: 
-    // rate
-    // account
+    @EnvironmentObject var accountModel: AccountModel
+    @EnvironmentObject var exchangeModel: ExchangeModel
+    
+    var accountID: String = ""
+    @State var plnAccountID: String = ""
     
     @State private var amount: Double = 0
     @State private var result: Double = 0
@@ -85,7 +87,17 @@ struct BuyView: View {
             Spacer()
             
             Button("Buy") {
-                
+                Task {
+                    await exchangeModel.postExchange(
+                        plnAccount_id: plnAccountID,
+                        otherAccount_id: accountID,
+                        amount: amount,
+                        operation: "BUY") { error in
+                            if error != nil {
+                                print(error?.localizedDescription)
+                            }
+                        }
+                }
             }
             .frame(maxWidth: .infinity)
             .padding()
@@ -94,10 +106,10 @@ struct BuyView: View {
             .clipShape(RoundedRectangle(cornerRadius: 12))
             
         }
-        .onAppear {
-            Task {
-                await currencyModel.getCurrencyByCode(code: code)
-            }
+        .task {
+            await currencyModel.getCurrencyByCode(code: code)
+            await accountModel.getAccount(id: accountID)
+            self.plnAccountID = await accountModel.getPLNAccountID() ?? ""
         }
         .padding()
         .background(.contentPrimary)
@@ -108,4 +120,6 @@ struct BuyView: View {
 #Preview {
     BuyView()
         .environmentObject(CurrencyModel())
+        .environmentObject(ExchangeModel())
+        .environmentObject(AccountModel())
 }

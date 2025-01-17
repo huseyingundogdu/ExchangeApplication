@@ -55,6 +55,7 @@ struct CreateNewAccountView: View {
             }
             .padding()
         }
+        .toolbar(.hidden, for: .tabBar)
     }
 }
 

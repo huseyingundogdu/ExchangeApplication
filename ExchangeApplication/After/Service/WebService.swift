@@ -17,42 +17,54 @@ struct Webservice {
     }
     
     func request<T: Decodable>(
-        endpoint: String,
-        method: String,
-        body: Data? = nil,
-        responseType: T.Type
-    ) async throws -> T {
-        guard let url = URL(string: "\(baseURL)\(endpoint)") else {
-            throw WebServiceError.invalidURL
+            endpoint: String,
+            method: String,
+            body: Data? = nil,
+            responseType: T.Type? = nil
+        ) async throws -> T? {
+            guard let url = URL(string: "\(baseURL)\(endpoint)") else {
+                throw WebServiceError.invalidURL
+            }
+            
+            var request = URLRequest(url: url)
+            request.httpMethod = method
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            
+            if let body = body {
+                request.httpBody = body
+            }
+            
+            if let token = getToken() {
+                request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+            }
+            
+            let (data, response) = try await URLSession.shared.data(for: request)
+            
+            guard let httpResponse = response as? HTTPURLResponse else {
+                throw WebServiceError.invalidResponse
+            }
+            
+            switch httpResponse.statusCode {
+            case 200:
+                break
+            case 404:
+                throw WebServiceError.notFound
+            case 500...599:
+                throw WebServiceError.serverError
+            default:
+                throw WebServiceError.invalidResponse
+            }
+            
+            if let responseType = responseType, !data.isEmpty {
+                
+                do {
+                    return try JSONDecoder().decode(T.self, from: data)
+                } catch {
+                    throw WebServiceError.invalidData
+                }
+            }
+            return nil
         }
-        
-        var request = URLRequest(url: url)
-        request.httpMethod = method
-        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        
-        if let token = getToken() {
-            request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-        }
-        
-        if let body = body {
-            request.httpBody = body
-        }
-        
-        
-        
-        let (data, response) = try await URLSession.shared.data(for: request)
-        
-        guard let httpResponse = response as? HTTPURLResponse else {
-            throw WebServiceError.invalidResponse
-        }
-        
-        do {
-            let decodedData = try JSONDecoder().decode(T.self, from: data)
-            return decodedData
-        } catch {
-            throw WebServiceError.invalidData
-        }
-    }
     
     
     

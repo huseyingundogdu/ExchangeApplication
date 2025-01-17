@@ -8,87 +8,131 @@
 import SwiftUI
 
 struct AccountDetailView: View {
+    @Environment(\.dismiss) var dismiss
     @EnvironmentObject private var accountModel: AccountModel
-
+    @State private var deleteErrorIsPresented = false
     var account: Account
+    @State private var isLoading = true
     
     var body: some View {
+        
         ZStack {
             Color.contentPrimary.ignoresSafeArea()
-            ScrollView {
-                VStack {
-                    
-                    HStack {
-                        Image(account.currencySymbol)
-                            .resizable()
-                            .frame(width: 50, height: 50)
-                        Text(account.currencySymbol + " Account")
-                        
-                    }
-                    
-                    Text("\(account.balance.formatted(.currency(code: ""))) \(account.currencySymbol)")
-                        .font(.title)
-                        .fontWeight(.heavy)
-                    
-                    HStack {
-                        Image(systemName: "building.columns.fill")
-                        
-                        Text(account.id)
-                            .padding(.vertical , 8)
-                    }
-                    .padding(.horizontal, 8)
-                    .fontWeight(.semibold)
+            if isLoading {
+                ProgressView("Loading...")
+                    .progressViewStyle(CircularProgressViewStyle())
+                    .padding()
                     .foregroundStyle(.interactiveSecondary)
-                    .background {
-                        Capsule()
-                            .fill(.contentSecondary)
-                    }
-                }
-                
-                NavigationLink(destination: SellView(code: CurrencyCode(rawValue: account.currencySymbol) ?? .USD)) {
-                    VStack {
-                        Image(systemName: "arrow.left.arrow.right.circle.fill")
-                            .resizable()
-                            .frame(width: 50, height: 50)
+                    .frame(maxHeight: .infinity)
+            } else {
+                if let account = accountModel.account {
+                    ScrollView {
+                        VStack {
+                            
+                            HStack {
+                                Image(account.currencySymbol)
+                                    .resizable()
+                                    .frame(width: 50, height: 50)
+                                Text(account.currencySymbol + " Account")
+                                
+                            }
+                            
+                            Text("\(account.balance.formatted(.currency(code: ""))) \(account.currencySymbol)")
+                                .font(.title)
+                                .fontWeight(.heavy)
+                            
+                            HStack {
+                                Image(systemName: "building.columns.fill")
+                                
+                                Text(account.id)
+                                    .padding(.vertical , 8)
+                            }
+                            .padding(.horizontal, 8)
+                            .fontWeight(.semibold)
                             .foregroundStyle(.interactiveSecondary)
-                        
-                        Text("Exchange")
-                            .fontWeight(.heavy)
-                            .foregroundStyle(.interactiveSecondary)
-                    }
-                    .padding(.vertical, 20)
-                }
-                
-                VStack {
-                    Text("Exchange History")
-                        .font(.title2)
-                        .fontWeight(.bold)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        
-                    ForEach(accountModel.exchanges) { exchange in
-                        NavigationLink(destination: ExchangeDetailView(exchange: exchange)) {
-                            ExchangeRow(exchange: exchange)
+                            .background {
+                                Capsule()
+                                    .fill(.contentSecondary)
+                            }
                         }
-                    }  
-                }
-            }
-            .foregroundStyle(.white)
-            .padding()
-            .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button("Delete Account") {
-                        Task {
-                            await accountModel.deleteAccount(accountID: account.id)
+                        if account.currencySymbol != "PLN" {
+                            NavigationLink(destination: ExchangeView(accountID: account.id)) {
+                                VStack {
+                                    Image(systemName: "arrow.left.arrow.right.circle.fill")
+                                        .resizable()
+                                        .frame(width: 50, height: 50)
+                                        .foregroundStyle(.interactiveSecondary)
+                                    
+                                    Text("Exchange")
+                                        .fontWeight(.heavy)
+                                        .foregroundStyle(.interactiveSecondary)
+                                }
+                                .padding(.vertical, 20)
+                            }
+                        }
+                        
+                        VStack {
+                            Text("Exchange History")
+                                .font(.title2)
+                                .fontWeight(.bold)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                            
+                            ForEach(accountModel.exchanges) { exchange in
+                                NavigationLink(destination: ExchangeDetailView(exchange: exchange)) {
+                                    ExchangeRow(exchange: exchange)
+                                }
+                            }
                         }
                     }
-                    .foregroundStyle(.red)
+                    .foregroundStyle(.white)
+                    .padding()
+                    .toolbar {
+                        if account.currencySymbol != "PLN" {
+                            ToolbarItem(placement: .topBarTrailing) {
+                                Button("Delete Account") {
+                                    if let aacount = accountModel.account {
+                                        if account.balance == 0 {
+                                            Task {
+                                                await accountModel.deleteAccount(accountID: account.id)
+                                                dismiss()
+                                            }
+                                        } else {
+                                            deleteErrorIsPresented = true
+                                        }
+                                    }
+                                }
+                                .foregroundStyle(.red)
+                            }
+                        }
+                    }
+                    .alert("There is still money in the account. You can't delete it.", isPresented: $deleteErrorIsPresented) {
+                        Button("OK") {
+                            deleteErrorIsPresented = false
+                        }
+                    }
                 }
             }
         }
-        .onAppear {
-            Task {
-                await accountModel.getExchanges(accountID: account.id)
-            }
+        .task {
+            await loadData()
+        }
+        .toolbar(.hidden, for: .tabBar)
+        
+    }
+    
+    private func loadData() async {
+        isLoading = true
+        
+        try? await Task.sleep(nanoseconds: 1_500_000_000)
+        
+        defer { isLoading = false } // Ensure isLoading is set to false after the task completes
+        
+        await accountModel.getAccount(id: account.id)
+        
+        if account.currencySymbol == "PLN" {
+            await accountModel.getAllExchanges()
+        } else {
+            await accountModel.getExchanges(accountID: account.id)
         }
     }
 }

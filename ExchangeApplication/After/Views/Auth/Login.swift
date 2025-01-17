@@ -11,78 +11,98 @@ struct Login: View {
     
     @EnvironmentObject private var authModel: AuthModel
     
-    @State private var email: String = "hg@gmail.com"
-    @State private var password: String = "123123"
+    @State private var email: String = ""
+    @State private var password: String = ""
+    
     
     var body: some View {
-        ZStack {
-            Rectangle()
-                .fill(
-                    Gradient(colors: [.interactivePrimary, .contentPrimary, .contentPrimary])
-                )
-                .ignoresSafeArea()
-            VStack {
-                Spacer()
-                Image("chart")
-                    .resizable()
+        NavigationStack {
+            ZStack {
+                Rectangle()
+                    .fill(
+                        Gradient(colors: [.interactivePrimary, .contentPrimary, .contentPrimary])
+                    )
                     .ignoresSafeArea()
-                    .frame(maxWidth: 450, maxHeight: 200)
-                    .aspectRatio(contentMode: .fill)
-            }
-            VStack(spacing: 50) {
-                Spacer()
-                Text("---   Zlotify   ---")
-                VStack(spacing: 20) {
-                    TextField("Username", text: $email)
-                        .textInputAutocapitalization(.never)
-                        .padding()
-                        .background(
-                            RoundedRectangle(cornerRadius: 12)
-                                .stroke(Color.gray, lineWidth: 2)
-                                .background(RoundedRectangle(cornerRadius: 12).fill(.contentPrimary))
-                        )
-                        .foregroundColor(.white)
-                    TextField("Password", text: $password)
-                        .padding()
-                        .background(
-                            RoundedRectangle(cornerRadius: 12)
-                                .stroke(Color.gray, lineWidth: 2)
-                                .background(RoundedRectangle(cornerRadius: 12).fill(.contentPrimary))
-                        )
-                        .foregroundColor(.white)
+                VStack {
+                    Spacer()
+                    Image("chart")
+                        .resizable()
+                        .ignoresSafeArea()
+                        .frame(maxWidth: 450, maxHeight: 200)
+                        .aspectRatio(contentMode: .fill)
                 }
-                
-                VStack(spacing: 30) {
-                    Button("Login") {
-                        //userModel.login(email: email, password: password)
-                        Task {
-                            await authModel.login(email: email, password: password)
+                VStack(spacing: 50) {
+                    Spacer()
+                    Image("logo")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                    
+                    VStack(spacing: 20) {
+                        TextField("Username", text: $email)
+                            .textInputAutocapitalization(.never)
+                            .padding()
+                            .background(
+                                RoundedRectangle(cornerRadius: 12)
+                                    .stroke(Color.gray, lineWidth: 2)
+                                    .background(RoundedRectangle(cornerRadius: 12).fill(.contentPrimary))
+                            )
+                            .foregroundColor(.white)
+                        SecureField("Password", text: $password)
+                            .padding()
+                            .background(
+                                RoundedRectangle(cornerRadius: 12)
+                                    .stroke(Color.gray, lineWidth: 2)
+                                    .background(RoundedRectangle(cornerRadius: 12).fill(.contentPrimary))
+                            )
+                            .foregroundColor(.white)
+                    }
+                    
+                    VStack(spacing: 30) {
+                        if !authModel.isLoading {
+                            Button("Login") {
+                                Task {
+                                    await loginButton()
+                                }
+                            }
+                            .font(.title3)
+                            .frame(height: 30)
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .foregroundStyle(.interactivePrimary)
+                            .background(RoundedRectangle(cornerRadius: 12).fill(.interactiveSecondary))
+                        } else {
+                            ProgressView()
+                                .frame(height: 30)
+                                .frame(maxWidth: .infinity)
+                                .padding()
+                                .foregroundStyle(.interactivePrimary)
+                                .background(RoundedRectangle(cornerRadius: 12).fill(.interactiveSecondary))
+                        }
+                        
+                        NavigationLink(destination: RegisterView()) {
+                            Text("Register")
+                                .foregroundStyle(.white)
                         }
                     }
-                    .font(.title3)
-                    .frame(maxWidth: .infinity)
-                    .padding()
-                    .foregroundStyle(.interactivePrimary)
-                    .background(RoundedRectangle(cornerRadius: 12).fill(.interactiveSecondary))
+                    Spacer()
                     
-                    Button("Register") {
-                        UserDefaults.standard.removeObject(forKey: "jsonwebtoken")
-                    }
-                    .font(.callout)
-                    .foregroundStyle(.interactiveSecondary)
                 }
-                Spacer()
-                
+                .font(.title2)
+                .fontWeight(.semibold)
+                .foregroundStyle(.white)
+                .padding(.horizontal, 55)
+                .alert(isPresented: $authModel.informationMessageIsPresented) {
+                    Alert(
+                        title: Text("Info"),
+                        message: Text(authModel.informationMessage),
+                        dismissButton: .default(Text("OK")))
+                }
             }
-            .font(.title2)
-            .fontWeight(.semibold)
-            .foregroundStyle(.white)
-            .padding(.horizontal, 55)
-            
-            
-            
-
         }
+    }
+    
+    private func loginButton() async {
+        await authModel.login(email: email, password: password)
     }
 }
 

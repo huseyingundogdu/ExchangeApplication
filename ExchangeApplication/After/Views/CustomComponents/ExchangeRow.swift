@@ -13,20 +13,37 @@ struct ExchangeRow: View {
     
     var body: some View {
         HStack {
-            if exchange.operation == "buy" {
-                Text(exchange.plnCurrency)
-                Text("\(exchange.plnAmount.formatted())")
-                Image(systemName: "arrow.left.arrow.right")
-                    .foregroundStyle(.interactiveSecondary)
+            if exchange.operation == "BUY" {
+                
                 Text(exchange.otherCurrency)
+                    .foregroundStyle(.green)
                 Text("\(exchange.otherAmount.formatted())")
+                    .foregroundStyle(.green)
+                    .font(.title3)
+                
+                Image(systemName: "arrow.left")
+                    .foregroundStyle(.interactiveSecondary)
+                
+                Text(exchange.plnCurrency)
+                    .foregroundStyle(.red)
+                Text("\(exchange.plnAmount.formatted())")
+                    .foregroundStyle(.red)
+                    .font(.title3)
             } else {
                 Text(exchange.otherCurrency)
+                    .foregroundStyle(.red)
                 Text("\(exchange.otherAmount.formatted())")
-                Image(systemName: "arrow.left.arrow.right")
+                    .foregroundStyle(.red)
+                    .font(.title3)
+                
+                Image(systemName: "arrow.right")
                     .foregroundStyle(.interactiveSecondary)
+                
                 Text(exchange.plnCurrency)
+                    .foregroundStyle(.green)
                 Text("\(exchange.plnAmount.formatted())")
+                    .foregroundStyle(.green)
+                    .font(.title3)
             }
             
             Spacer()

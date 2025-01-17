@@ -29,9 +29,7 @@ struct HistoryView: View {
                 }
                 .scrollIndicators(.hidden)
                 .onAppear {
-                    Task {
-                        try await model.loadExchanges()
-                    }
+                    
                 }
                 .padding()
             }

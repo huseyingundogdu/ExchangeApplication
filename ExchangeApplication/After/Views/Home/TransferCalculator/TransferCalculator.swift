@@ -10,7 +10,7 @@ import SwiftUI
 struct TransferCalculator: View {
     var rates: Rates? = Constants.MockData.rates
     @Binding var fromCode: CurrencyCode
-    @State var fromValue: Double = 1
+    @State var fromValue: Double = 0
     @State var plnValue: Double = 0
     
     var body: some View {
@@ -60,6 +60,9 @@ struct TransferCalculator: View {
                                                 .foregroundStyle(.interactiveSecondary)
                                                 .onChange(of: fromCode) { _, newValue in
                                                     fromCode = newValue
+//                                                    calculatePLN() // TEST
+                                                    fromValue = 0
+                                                    plnValue = 0
                                                 }
                     }
                     .padding()
@@ -94,7 +97,7 @@ struct TransferCalculator: View {
                     .fill(.contentSecondary)
             }
         }
-        .onAppear {
+        .onAppear { // .onappear
             calculatePLN()
         }
     }
