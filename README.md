@@ -67,6 +67,7 @@ http://localhost:8080/swagger-ui/index.html#/
 <img src="https://github.com/user-attachments/assets/9d1a189a-53c9-48e9-bb06-1fc0bcc628ba" alt="drawing" width="200"/>
 
 ### Account
+<img src="https://github.com/user-attachments/assets/06c846fe-9c6a-453a-8ee6-892e80f0ace6" alt="drawing" width="200"/>
 <img src="https://github.com/user-attachments/assets/ef637cf8-c277-4689-8877-3aac6f3956bb" alt="drawing" width="200"/>
 <img src="https://github.com/user-attachments/assets/4e478a1f-5eb0-4db1-ac1f-554353d1598c" alt="drawing" width="200"/>
 <img src="https://github.com/user-attachments/assets/d07c235b-de0c-4556-b80f-38cb3cd1a8ea" alt="drawing" width="200"/>
