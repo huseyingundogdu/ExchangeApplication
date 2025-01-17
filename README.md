@@ -11,20 +11,20 @@ https://github.com/CANWIA00/exchangeBankAPI
 - Launch the API on your device and navigate to the Swagger documentation endpoint to explore the available requests and responses.
 http://localhost:8080/swagger-ui/index.html#/
 
-#### Authentication Controller
+#### Authentication
 
 | Request Type | Path     | Description                |
 | :-------- | :------- | :------------------------- |
 | `POST` | `/auth/register` | To register to app  |
 | `POST` | `/exchange/login` | To login to app |
 
-#### User Controller
+#### User
 
 | Request Type | Path     | Description                |
 | :-------- | :------- | :------------------------- |
 | `GET` | `/user` | Get user details  |
 
-#### Account Controller
+#### Account
 
 | Request Type | Path     | Description                |
 | :-------- | :------- | :------------------------- |
@@ -36,7 +36,7 @@ http://localhost:8080/swagger-ui/index.html#/
 | `PATCH` | `/account/{id}` | Add money to account using by account id |
 
 
-#### Exchange Controller
+#### Exchange
 
 | Request Type | Path     | Description                |
 | :-------- | :------- | :------------------------- |
@@ -45,7 +45,7 @@ http://localhost:8080/swagger-ui/index.html#/
 | `GET` | `/exchange/{id}` | Get exchange details using by id |
 | `GET` | `/exchange/account/{id}` | Get all exchange details using by account id [History]|
 
-#### Currency Controller
+#### Currency
 
 <h6>All currency rates are up to date. // https://api.nbp.pl/</h6>
 
