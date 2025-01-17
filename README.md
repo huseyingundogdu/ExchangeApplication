@@ -8,8 +8,6 @@ https://github.com/CANWIA00/exchangeBankAPI
 ## API Reference
 - Base url: http://localhost:8080/v1/
 - All the endponints got secured with jwt token except Login and Register endpoints. So need to send also jwt token all the time via header.
-- Launch the API on your device and navigate to the Swagger documentation endpoint to explore the available requests and responses.
-http://localhost:8080/swagger-ui/index.html#/
 
 #### Authentication
 
@@ -54,6 +52,9 @@ http://localhost:8080/swagger-ui/index.html#/
 | `GET` | `/currency/table` | Get all currency rates|
 | `GET` | `/currency/table/period/{id}` | Get currency rates for 1 month |
 | `GET` | `/currency/id/{id}` | Get currency using by id|
+
+#### Launch the API on your device and navigate to the Swagger documentation endpoint to explore the available requests and responses.
+http://localhost:8080/swagger-ui/index.html#/
 
 <a name="screenshots-section"></a>
 ## Screenshots
